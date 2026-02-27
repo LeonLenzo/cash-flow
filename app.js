@@ -341,7 +341,9 @@
                         backgroundColor: [
                             '#10b981', '#047857', '#10b981', '#047857', '#10b981', '#047857',
                             '#10b981', '#047857', '#10b981', '#047857', '#10b981', '#047857'
-                        ]
+                        ],
+                        borderColor: '#0f0f0f',
+                        borderWidth: 3
                     }]
                 },
                 options: {
@@ -364,13 +366,10 @@
                             }
                         },
                         datalabels: {
-                            color: function(context) {
-                                // Use white for darker colors, black for lighter colors
-                                const bgColor = context.dataset.backgroundColor[context.dataIndex];
-                                return '#000';
-                            },
+                            color: '#ffffff',
                             font: {
-                                weight: 'bold',
+                                family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
+                                weight: '400',
                                 size: 11
                             },
                             formatter: (value, ctx) => {
@@ -414,13 +413,11 @@
                                 }
 
                                 const amount = '$' + Math.round(displayValue).toLocaleString();
-                                const pct = percentage.toFixed(1) + '%';
-                                // Truncate long labels
-                                const shortLabel = label.length > 12 ? label.substring(0, 12) + '...' : label;
-                                return [shortLabel, amount + ' (' + pct + ')'];
+                                return [label, amount];
                             },
                             display: true,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            clip: false
                         }
                     },
                     onClick: (event, elements) => {
