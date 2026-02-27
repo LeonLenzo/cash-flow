@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cash.flow</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1 style="margin: 0;">cash.flow</h1>
+            <label for="csvFile" class="upload-label" id="uploadBtnTop" style="display: none;">Upload CSV</label>
+        </div>
+
+        <div class="upload-section" id="uploadSection">
+            <label for="csvFile" class="upload-label">Upload CSV File</label>
+            <p style="margin-top: 10px; color: #888;">Upload your transaction data to see insights</p>
+        </div>
+        <input type="file" id="csvFile" accept=".csv">
+
+        <div id="dashboard" class="hidden">
+            <div class="charts">
+                <div class="chart-container">
+                    <h2>
+                        <div class="drill-mode-toggle">
+                            <button id="accountModeBtn" class="active" onclick="switchDrillMode('account')">Account</button>
+                            <button id="categoryModeBtn" onclick="switchDrillMode('category')">Category</button>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center; margin-left: auto;">
+                            <div class="view-toggle">
+                                <button id="totalModeBtn" class="active" onclick="switchTotalMode('total')">Total</button>
+                                <button id="monthlyModeBtn" onclick="switchTotalMode('monthly')">Monthly</button>
+                                <button id="fortnightlyModeBtn" onclick="switchTotalMode('fortnightly')">Fortnightly</button>
+                            </div>
+                            <div class="view-toggle">
+                                <button id="chartViewBtn" class="active" onclick="switchView('chart')">Chart</button>
+                                <button id="tableViewBtn" onclick="switchView('table')">Table</button>
+                            </div>
+                        </div>
+                    </h2>
+                    <div class="chart-wrapper">
+                        <canvas id="accountChart"></canvas>
+                        <div id="chartTotal" class="chart-total hidden">
+                            <div class="total-category" id="totalCategory" onclick="goBackLevel()"></div>
+                            <div class="total-amount" id="totalAmount">$0</div>
+                            <div class="total-label" id="totalLabel">Total Spent</div>
+                        </div>
+                    </div>
+                    <div id="accountTable" class="table-view hidden"></div>
+                    <div class="breadcrumb-container">
+                        <span class="breadcrumb" id="breadcrumb"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
